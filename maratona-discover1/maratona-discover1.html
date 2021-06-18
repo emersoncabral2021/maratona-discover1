@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>maratona-discover1</title>
     <link rel="stylesheet" href="maratona-discover1.css">
+    <link rel="stylesheet" href="maratona-discover1-resposividade.css">
 
 </head>
 <body>
@@ -15,33 +16,47 @@
     </header>
     <main class="conteiner">
         <section id="balance">
-            <h2>Balanço</h2>
+            <h2 class="sr-only">Balanço</h2>
 
                 <div class="card">
-                    <h3>Entrada</h3>
+                    <h3>    
+                    <span>Entrada</span>
+                    <i class="far fa-arrow-alt-circle-up"></i>
+                    </h3>
                     <p>R$ 5.000,00</p>
                 </div>
 
                 <div class="card">
-                    <h3>Saída</h3>
+                    <h3>
+                        <span>Saída</span>
+                        <i class="far fa-arrow-alt-circle-down"></i>
+                    </h3>
                     <p>R$ 2.000,00</p>
                 </div>
 
                 <div class="card total">
-                    <h3>Total</h3>
+                    <h3>
+                        <span>Total</span>
+                        <i class="fas fa-coins"></i>
+                    </h3>
                     <p>R$ 3.000,00</p>
                 </div>
         </section>
 
        <section id="transaction">
            
-           <h2>Transaçõe</h2>
+           <h2 class="sr-only">Transações</h2>
+
+           <a href="#" class="button new">+ Nova Transação</a>
+
            <table id="data_table">
            <thead>
                <tr>
                    <th>Descrição</th>
                    <th>Valor</th>
                    <th>Data</th>
+                   <th></th>
+                   
                </tr>
            </thead>
            <tbody>
@@ -49,16 +64,19 @@
                    <td class="descrition">Luz</td>
                    <td class="expense">- R$ 500,00</td>
                    <td class="date">23/06/2021</td>
+                   <td><i class="fas fa-minus-circle"></i></td>
                </tr>
                <tr>
                    <td class="descrition">web site</td>
                    <td class="income">R$ 5.000,00</td>
                    <td class="date">23/06/2021</td>
+                   <td><i class="fas fa-minus-circle"></i></td>
                </tr>
                <tr>
                    <td class="descrition">Internet</td>
                    <td class="expense">- R$ 200,00</td>
                    <td class="date">23/06/2021</td>
+                   <td><i class="fas fa-minus-circle"></i></td>
                </tr>
            </tbody>
            </table>
@@ -66,5 +84,8 @@
     </main>
 
     <footer><p>dev.financia$</p></footer>
+
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
+
 </body>
 </html>
