@@ -1,6 +1,8 @@
 /*variavel css=========================*/
 :root{
     --dark-blue:#363f5f;
+    --green:#3dd705;
+
 }
 /*globais=========================*/
 *{
@@ -45,13 +47,33 @@ a{
     text-decoration: none;
 }
 a:hover{
-    color: #3dd705;
+    color:var(--green);
 }
 .button.new{
     display: inline-block;
     margin-bottom: .8rem;
 }
 
+button{
+    width: 100%;
+    height: 40px;
+    border: none;
+    background-color:var(--green);
+    padding: 0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    color: white;
+    
+}
+.button.cancel{
+    color: red;
+    border: 2px red solid;
+    border-radius: 0.25rem;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /*header=========================*/
 header{
     background-color: #2D4A22;
@@ -106,15 +128,19 @@ header{
 }
 /*table=========================*/
 
+#transaction{
+    overflow-x: auto;
+    display: block;
+    width: 100%;
+
+}
 #data_table{
     width: 100%;
     border-spacing: 0 0.5rem;
     color: #969cb3;
-
 }
-table th{
+table thead th{
     background-color: white;
-    opacity: 0.6;
     font-weight: normal;
     text-align: left;
     padding: 1rem 2rem;
@@ -152,6 +178,61 @@ td.income{
     color: red;
 
 }
+/*modal=========================*/
+.modal-overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.322);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+}
+.modal{
+    width: 500px;
+    height: 300px;
+    background-color: white;
+    padding: 2.4rem;
+}
+.modal-overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+/*form=========================*/
+
+
+.form form input{
+    display: block;
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 0.2rem;
+    padding: 0.8rem;
+
+}
+.form h2{
+    margin-top: 0;
+
+}
+.input-group small{
+    opacity: 0.4;
+
+}
+.input-group.actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.input-group.actions .button, .input-group.actions button{
+    width: 48%;
+}
+
 /*footer=========================*/
 footer{
     text-align: center;
