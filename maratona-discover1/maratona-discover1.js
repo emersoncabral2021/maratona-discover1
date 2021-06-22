@@ -31,6 +31,11 @@ const transations = [
     amount: -50000,
     date: '23/01/2021',
 },
+{id: 4,
+    description: 'carro',
+    amount: -70000,
+    date: '23/01/2021',
+},
 ]
 
 const transation = {
@@ -50,6 +55,8 @@ const dom = {
     addtransation(transation, index){
         const tr = document.createElement('tr')
         tr.innerHTML = dom.innerhtmltransation(transation)
+
+        dom.transationCoteiner.appendChild(tr)
         
     },
     innerhtmltransation(transation){
@@ -58,7 +65,7 @@ const dom = {
         const amount = util.formatcurrency(transation.amount)
         const html =`
         <td class="descrition">${transation.description}</td>
-        <td class="expense">${transation.amount}</td>
+        <td class="${cssclass}">${amount}</td>
         <td class="date">${transation.date}</td>
         <td><i class="fas fa-minus-circle"></i></td>
     
@@ -69,8 +76,13 @@ const dom = {
 
 const util = {
     formatcurrency(value){
-        const sinal = Number(value < 0 ? "-" : "")
-        console.log(value.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}))
+        const sinal = Number(value) > 0 ? "-" : ""
+
+       value = new String(value).replace(/\D/g,"")//acha tudo que nao e numero
+       value = Number(value) / 100//
+       value = value.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})
+
+       return sinal + value
     }
 }
 
