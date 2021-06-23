@@ -33,21 +33,44 @@ const transations = [
 },
 {id: 4,
     description: 'carro',
-    amount: -70000,
+    amount: 30000,
     date: '23/01/2021',
 },
+
 ]
 
 const transation = {
     incomes(){
-        //somar entradas
+        let income = 0
+        //pegar todas as transaçõe
+        //para cada transação
+        transations.forEach(transation => {
+           // se for maior que zero 
+           if(transation.amount > 0){
+            income += transation.amount
+           }
+        //somar a uma variavel e retorna a variavel 
+        })
+        
+        return income
     },
     expenses(){
-        //somar saida
-    },
+        let expense = 0
+        //pegar todas as transaçõe
+        //para cada transação
+        transations.forEach(transation => {
+           // se for meno que zero 
+           if(transation.amount < 0){
+            expense += transation.amount
+           }
+        //somar a uma variavel e retorna a variavel 
+        })
+        
+        return expense 
+       },
     total(){
-        //entradas - saida
-    }
+        return transation.incomes() + transation.expenses()
+     }
 }
 
 const dom = {
@@ -60,7 +83,7 @@ const dom = {
         
     },
     innerhtmltransation(transation){
-        const cssclass = transation.amount > 0 ? "income" : "expense"
+        const cssclass = transation.amount < 0 ? "income" : "expense"
 
         const amount = util.formatcurrency(transation.amount)
         const html =`
@@ -71,12 +94,17 @@ const dom = {
     
     `
     return html
+    },
+    updatebalance(){
+        document.getElementById('expensedisplay').innerHTML = util.formatcurrency(transation.expenses()) 
+        document.getElementById('incomedisplay').innerHTML = util.formatcurrency(transation.incomes()) 
+        document.getElementById('totaldisplay').innerHTML = util.formatcurrency(transation.total()) 
     }
 }
 
 const util = {
     formatcurrency(value){
-        const sinal = Number(value) > 0 ? "-" : ""
+        const sinal = Number(value) < 0 ? "-" : ""
 
        value = new String(value).replace(/\D/g,"")//acha tudo que nao e numero
        value = Number(value) / 100//
@@ -90,3 +118,5 @@ transations.forEach(function(transation){
     dom.addtransation(transation)
 
 })
+
+dom.updatebalance()
