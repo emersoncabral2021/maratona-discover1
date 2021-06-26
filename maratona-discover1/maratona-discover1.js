@@ -14,8 +14,7 @@ const Modal = {
         .classList.remove('active')
     }
 }
-
-const transations = [
+/*const transations = [
     {
      description: 'luz',
      amount: -50000,
@@ -38,9 +37,22 @@ const transations = [
 },
 
 ]
-
+*/
+const storage = {
+    get(){
+        //transformar um string em objeto com JSON.parse(localStorage()
+        return JSON.parse(localStorage.getItem("dev")) || []
+        
+    },
+    set(transition){
+        //transformar um objeto em string com JSON.stringify()
+        console.log(JSON.stringify(transition))
+        localStorage.setItem("dev", JSON.stringify(transition))
+    }
+}
 const transation = {
-    all: transations,
+    all: storage.get(),
+
     add(transatio){
         transation.all.push(transatio)
         App.reload()
@@ -140,21 +152,6 @@ const util = {
 }
 
 
-const App = {
-    init (){
-    transation.all.forEach(function(transation,index){
-    dom.addtransation(transation,index)
-
-})
-
-dom.updatebalance()
-
-    },
-    reload(){
-        dom.cleartransation()
-        App.init()
-    }
-}
 
 const form = {
     description: document.querySelector("input#descripition"),
@@ -222,5 +219,19 @@ const form = {
 }
     }
    
+const App = {
+    init (){
+    transation.all.forEach(function(transation,index){
+    dom.addtransation(transation,index)
+    dom.updatebalance()
+    storage.set(transation.all)
+
+})
+    },
+    reload(){
+        dom.cleartransation()
+        App.init()
+    }
+}
 
 App.init()
