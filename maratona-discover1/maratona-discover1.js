@@ -38,28 +38,20 @@ const Modal = {
 
 ]
 */
-const storage = {
-    get(){
-        //transformar um string em objeto com JSON.parse(localStorage()
-        return JSON.parse(localStorage.getItem("dev")) || []
-        
-    },
-    set(transition){
-        //transformar um objeto em string com JSON.stringify()
-        console.log(JSON.stringify(transition))
-        localStorage.setItem("dev", JSON.stringify(transition))
-    }
-}
+
+//fazer set resebeer um valor
+
 const transation = {
-    all: storage.get(),
+    all:[],
 
     add(transatio){
-        transation.all.push(transatio)
+        transation.all.push(transatio)        
         App.reload()
 
     },
     remove(index){
         transation.all.splice(index, 1)
+        dom.updatebalance()
         App.reload()
     },
     incomes(){
@@ -120,7 +112,8 @@ const dom = {
     updatebalance(){
         document.getElementById('expensedisplay').innerHTML = util.formatcurrency(transation.expenses()) 
         document.getElementById('incomedisplay').innerHTML = util.formatcurrency(transation.incomes()) 
-        document.getElementById('totaldisplay').innerHTML = util.formatcurrency(transation.total()) 
+        document.getElementById('totaldisplay').innerHTML = util.formatcurrency(transation.total())
+         
     },
     cleartransation(){
         dom.transationCoteiner.innerHTML = ""
@@ -141,12 +134,11 @@ const util = {
         return `${splitdate[2]}/${splitdate[1]}/${splitdate[0]}`
     },
     formatcurrency(value){
-        const sinal = Number(value) < 0 ? "-" : ""
+        const sinal = Number(value) < 0 ? "" : ""
 
-       value = new String(value).replace(/\D/g,"")//acha tudo que nao e numero
-       value = Number(value) / 100//
+       value = Math.round(value)//acha tudo que nao e numero
+       value = Number(value) / 100
        value = value.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})
-
        return sinal + value
     }
 }
@@ -224,7 +216,6 @@ const App = {
     transation.all.forEach(function(transation,index){
     dom.addtransation(transation,index)
     dom.updatebalance()
-    storage.set(transation.all)
 
 })
     },
